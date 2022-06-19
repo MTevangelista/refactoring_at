@@ -1,3 +1,4 @@
+import AlarmConstants from './alarm-constants';
 import Sensor from './sensor';
 
 export default class Alarm {
@@ -8,8 +9,12 @@ export default class Alarm {
 	private alarmOn: boolean;
 
 	constructor() {
-		this.lowPressureThreshold = 17;
-		this.highPressureThreshold = 21;
+		/*
+			Code Smells: Bloaters - Primitive Obsession
+			Refactoring: Organizing Data - Replace magic number with symbolic constant
+		*/
+		this.lowPressureThreshold = AlarmConstants.lowPressureThreshold;
+		this.highPressureThreshold = AlarmConstants.highPressureThreshold;
 		this.sensor = new Sensor();
 		this.alarmOn = false;
 	}
