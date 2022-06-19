@@ -1,28 +1,32 @@
 import AlarmConstants from './alarm-constants';
-import Sensor from './sensor';
 
 export default class Alarm {
 	private highPressureThreshold: number;
 	private lowPressureThreshold: number;
-
-	private sensor: Sensor;
+	private psiPressureValue: number
 	private alarmOn: boolean;
 
-	constructor() {
-		/*
-			Code Smells: Bloaters - Primitive Obsession
-			Refactoring: Organizing Data - Replace magic number with symbolic constant
-		*/
-		this.lowPressureThreshold = AlarmConstants.lowPressureThreshold;
-		this.highPressureThreshold = AlarmConstants.highPressureThreshold;
-		this.sensor = new Sensor();
+	/*
+		Code Smells: Improper Instantiation and High Coupling
+		Refactoring: Design Pattern (DI) - Dependency Injection
+	*/
+	/*
+		Code Smells: Bloaters - Primitive Obsession
+		Refactoring: Organizing Data - Replace magic number with symbolic constant
+	*/
+	constructor(
+		psiPressureValue: number,
+		lowPressureThreshold: number = AlarmConstants.lowPressureThreshold,
+		highPressureThreshold: number = AlarmConstants.highPressureThreshold
+	) {
+		this.lowPressureThreshold = lowPressureThreshold
+		this.highPressureThreshold = highPressureThreshold
+		this.psiPressureValue = psiPressureValue
 		this.alarmOn = false;
 	}
 
 	public check() {
-		const psiPressureValue = this.sensor.popNextPressurePsiValue();
-
-		if (psiPressureValue < this.lowPressureThreshold || this.highPressureThreshold < psiPressureValue) {
+		if (this.psiPressureValue < this.lowPressureThreshold || this.highPressureThreshold < this.psiPressureValue) {
 			this.alarmOn = true;
 		}
 	}
@@ -30,5 +34,4 @@ export default class Alarm {
 	public isAlarmOn() {
 		return this.alarmOn;
 	}
-
 }
