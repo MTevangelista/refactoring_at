@@ -16,5 +16,16 @@ describe('Tyre Pressure Monitoring System', () => {
 				expect(sut.isAlarmOn()).equal(true)
 			})
 		})
+
+		context("When the tire pressure is inside the expected range", () => {
+			it("Shouldn't have alarm activated", () => {
+				const psiPressureValue = 20
+				const sut = new Alarm(psiPressureValue)
+
+				sut.check()
+
+				expect(sut.isAlarmOn()).equal(false)
+			})
+		})
 	});
 });
