@@ -9,8 +9,12 @@ import AlarmConstants from './alarm-constants';
 	Refactoring: Organizing Data - Replace magic number with symbolic constant
 */
 /*
-	Code Smells: directly accessing a private field within a class is not flexible enough
+	Code Smells: Directly accessing a private field within a class is not flexible enough
 	Refactoring: Organizing Data - Self encapsulate field
+*/
+/*
+	Code Smells: Expression can be difficult to understand
+	Refactoring: Composing Methods - Extract variable
 */
 export default class Alarm {
 	private highPressureThreshold: number;
@@ -50,7 +54,10 @@ export default class Alarm {
 	}
 
 	public check() {
-		if (this.getPsiPressureValue() < this.getLowPressureThreshold() || this.getHightPressureThreshold() < this.getPsiPressureValue()) {
+		const lessThanExpected: boolean = this.getPsiPressureValue() < this.getLowPressureThreshold()
+		const moreThanExpected: boolean = this.getPsiPressureValue() > this.getHightPressureThreshold()
+
+		if (lessThanExpected || moreThanExpected) {
 			this.setAlarmOn(true)
 		}
 	}
