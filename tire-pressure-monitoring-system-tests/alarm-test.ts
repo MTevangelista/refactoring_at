@@ -13,7 +13,7 @@ describe('Tyre Pressure Monitoring System', () => {
 
 				sut.check()
 				
-				expect(sut.isAlarmOn()).equal(true)
+				expect(sut.getAlarmOn()).equal(true)
 			})
 		})
 
@@ -24,7 +24,7 @@ describe('Tyre Pressure Monitoring System', () => {
 
 				sut.check()
 
-				expect(sut.isAlarmOn()).equal(false)
+				expect(sut.getAlarmOn()).equal(false)
 			})
 		})
 	});
