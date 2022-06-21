@@ -1,15 +1,15 @@
-class TurnNumberSequence {
+export default interface ITurnNumberSequence {
+    getNextTurnNumber(): number
+}
+
+export default class TurnNumberSequence implements ITurnNumberSequence {
 	private turnNumber: number;
 
-	constructor() {
-		this.turnNumber = 0;
+	constructor(turnNumber: number = 0) {
+		this.turnNumber = turnNumber
 	}
 
 	public getNextTurnNumber() {
 		return this.turnNumber++;
 	}
 }
-
-const sequence = new TurnNumberSequence();
-
-export default sequence;
