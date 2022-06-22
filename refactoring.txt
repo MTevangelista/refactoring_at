@@ -1,0 +1,32 @@
+* o que é refatoração
+
+- É o caminho para manter um software bem projeto mesmo com o decorrer do tempo. 
+- O processo consiste em alterar um sistema de tal maneira que não altera seu funcionamento e desempenho, mas melhora sua estrutura.
+- Refatoração é arte
+
+[01] Técnica de Extract Variable
+Problema: Você tem uma expressão que é difícil de entender.
+Solucão: Coloque o resultado da expressão ou suas partes em variáveis ​​separadas que são autoexplicativas.
+alcances: Código mais legível
+limitações: No caso de ser uma expressão condicional, o compilador provavelmente a otimizará para minimizar a quantidade de cálculos necessários 
+            para estabelecer o valor resultante. Digamos que você tenha uma expressão a seguir if (a() || b()). O programa não chamará o método b 
+            se o método a retornar true porque o valor resultante ainda será true, independentemente do valor retornado b.
+            No entanto, se extrair partes dessa expressão em variáveis, ambos os métodos sempre serão chamados, o que pode prejudicar 
+            o desempenho do programa, especialmente se esses métodos fizerem algum trabalho pesado.
+
+
+[02] Técnica de Inline Temp
+Problema: Você tem uma variável temporária que recebe o resultado de uma expressão simples e nada mais.
+Solucão: Substitua as referências à variável pela própria expressão.
+alcances: Essa técnica de refatoração não oferece quase nenhum benefício por si só. No entanto, se a variável receber o resultado de um método,
+          você poderá melhorar marginalmente a legibilidade do programa eliminando a variável desnecessária.
+limitações: Às vezes, temporários aparentemente inúteis são usados ​​para armazenar em cache o resultado de uma operação cara que é reutilizada várias vezes. Portanto,
+            antes de usar essa técnica de refatoração, certifique-se de que a simplicidade não venha à custa do desempenho.
+
+
+[03] Técnica de Extract Subclass
+Problema: Uma classe possui recursos que são usados ​​apenas em determinados casos.
+Solucão: Crie uma subclasse e use-a nesses casos.
+alcances: Cria uma subclasse de forma rápida e fácil. Como também, pode criar várias subclasses separadas se sua classe principal
+          estiver implementando mais de um caso especial.
+limitações: Apesar de sua aparente simplicidade, Herança pode levar a um beco sem saída se você tiver que separar várias hierarquias de classes diferentes.
