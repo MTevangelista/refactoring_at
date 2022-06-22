@@ -14,9 +14,11 @@ describe('Turn Ticket Dispenser', () => {
 				const ticketDispenser = new TicketDispenser(turnNumberSequence)
 		
 				const previousTicket = ticketDispenser.getTurnTicket()
+				const previousTicketNumber = previousTicket.getTurnNumber()
 				const newTicket = ticketDispenser.getTurnTicket()
+				const newTicketNumber = newTicket.getTurnNumber()
 		
-				expect(newTicket.getTurnNumber()).to.greaterThan(previousTicket.getTurnNumber())
+				expect(newTicketNumber).to.greaterThan(previousTicketNumber)
 			})
 		})
 
@@ -26,11 +28,13 @@ describe('Turn Ticket Dispenser', () => {
 		
 				const ticketDispenser = new TicketDispenser(turnNumberSequence)
 				const previousTicket = ticketDispenser.getTurnTicket()
+				const previousTicketNumber = previousTicket.getTurnNumber()
 		
 				const secondTicketDispenser = new TicketDispenser(turnNumberSequence)
 				const newTicket = secondTicketDispenser.getTurnTicket()
+				const newTicketNumber = newTicket.getTurnNumber()
 		
-				expect(newTicket.getTurnNumber()).to.greaterThan(previousTicket.getTurnNumber())
+				expect(newTicketNumber).to.greaterThan(previousTicketNumber)
 			})
 		})
 	});
